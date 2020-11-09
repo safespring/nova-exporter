@@ -27,7 +27,7 @@ class NovaCollector(object):
                 'nova_hypervisor_version',
                 'nova_hypervisor_cpu_vendor',
                 'nova_hypervisor_cpu_model',
-                'nova_hypervisor_cpu_arch', 
+                'nova_hypervisor_cpu_arch',
             ])
         metrics.append(nova_hypervisor_up)
 
@@ -39,7 +39,7 @@ class NovaCollector(object):
         metrics.append(nova_hypervisor_vcpus)
 
         nova_hypervisor_vcpus_used = GaugeMetricFamily(
-            'nova_hypervisor_vcpus',
+            'nova_hypervisor_vcpus_used',
             'Number of vcpus in use',
             labels=['nova_hypervisor_id'],
         )
