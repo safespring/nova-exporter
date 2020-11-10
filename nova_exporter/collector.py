@@ -34,71 +34,101 @@ class NovaCollector(object):
         nova_hypervisor_vcpus = GaugeMetricFamily(
             'nova_hypervisor_vcpus',
             'Number of vcpus available',
-            labels=['nova_hypervisor_id'],
-        )
+            labels=[
+                'nova_hypervisor_id',
+                'nova_hypervisor_up',
+                'nova_hypervisor_name'
+            ])
         metrics.append(nova_hypervisor_vcpus)
 
         nova_hypervisor_vcpus_used = GaugeMetricFamily(
             'nova_hypervisor_vcpus_used',
             'Number of vcpus in use',
-            labels=['nova_hypervisor_id'],
-        )
+            labels=[
+                'nova_hypervisor_id',
+                'nova_hypervisor_up',
+                'nova_hypervisor_name'
+            ])
         metrics.append(nova_hypervisor_vcpus_used)
 
         nova_hypervisor_running_vms = GaugeMetricFamily(
             'nova_hypervisor_running_vms',
             'Number of vms running on this hypervisor',
-            labels=['nova_hypervisor_id'],
-        )
+            labels=[
+                'nova_hypervisor_id',
+                'nova_hypervisor_up',
+                'nova_hypervisor_name'
+            ])
         metrics.append(nova_hypervisor_running_vms)
 
         nova_hypervisor_local_disk_size = GaugeMetricFamily(
             'nova_hypervisor_local_disk_size',
             'Amount of local disk available on this hypervisor',
-            labels=['nova_hypervisor_id'],
-        )
+            labels=[
+                'nova_hypervisor_id',
+                'nova_hypervisor_up',
+                'nova_hypervisor_name'
+            ])
         metrics.append(nova_hypervisor_local_disk_size)
 
         nova_hypervisor_local_disk_used = GaugeMetricFamily(
             'nova_hypervisor_local_disk_used',
             'Amount of local disk used on this hypervisor',
-            labels=['nova_hypervisor_id'],
-        )
+            labels=[
+                'nova_hypervisor_id',
+                'nova_hypervisor_up',
+                'nova_hypervisor_name'
+            ])
         metrics.append(nova_hypervisor_local_disk_used)
 
         nova_hypervisor_local_disk_free = GaugeMetricFamily(
             'nova_hypervisor_local_disk_free',
             'Amount of local disk free on this hypervisor',
-            labels=['nova_hypervisor_id'],
-        )
+            labels=[
+                'nova_hypervisor_id',
+                'nova_hypervisor_up',
+                'nova_hypervisor_name'
+            ])
         metrics.append(nova_hypervisor_local_disk_free)
 
         nova_hypervisor_memory_size = GaugeMetricFamily(
             'nova_hypervisor_memory_size',
             'Amount of memory available on this hypervisor',
-            labels=['nova_hypervisor_id'],
-        )
+            labels=[
+                'nova_hypervisor_id',
+                'nova_hypervisor_up',
+                'nova_hypervisor_name'
+            ])
         metrics.append(nova_hypervisor_memory_size)
 
         nova_hypervisor_memory_used = GaugeMetricFamily(
             'nova_hypervisor_memory_used',
             'Amount of memory used on this hypervisor',
-            labels=['nova_hypervisor_id'],
-        )
+            labels=[
+                'nova_hypervisor_id',
+                'nova_hypervisor_up',
+                'nova_hypervisor_name'
+            ])
         metrics.append(nova_hypervisor_memory_used)
 
         nova_hypervisor_memory_free = GaugeMetricFamily(
             'nova_hypervisor_memory_free',
             'Amount of memory free on this hypervisor',
-            labels=['nova_hypervisor_id'],
-        )
+            labels=[
+                'nova_hypervisor_up',
+                'nova_hypervisor_id',
+                'nova_hypervisor_name'
+            ])
         metrics.append(nova_hypervisor_memory_free)
 
         nova_hypervisor_current_workload = GaugeMetricFamily(
             'nova_hypervisor_current_workload',
             'Number of hypervisor tasks',
-            labels=['nova_hypervisor_id'],
-        )
+            labels=[
+                'nova_hypervisor_id',
+                'nova_hypervisor_up',
+                'nova_hypervisor_name'
+            ])
         metrics.append(nova_hypervisor_current_workload)
 
         for hv in self.cloud.list_hypervisors():
