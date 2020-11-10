@@ -62,6 +62,7 @@ class NovaCollector(object):
             'nova_hypervisor_local_disk_size',
             'Amount of local disk available on this hypervisor',
             labels=[
+                'nova_hypervisor_id',
                 'nova_hypervisor_name'
             ])
         metrics.append(nova_hypervisor_local_disk_size)
