@@ -36,7 +36,6 @@ class NovaCollector(object):
             'Number of vcpus available',
             labels=[
                 'nova_hypervisor_id',
-                'nova_hypervisor_up',
                 'nova_hypervisor_name'
             ])
         metrics.append(nova_hypervisor_vcpus)
@@ -46,7 +45,6 @@ class NovaCollector(object):
             'Number of vcpus in use',
             labels=[
                 'nova_hypervisor_id',
-                'nova_hypervisor_up',
                 'nova_hypervisor_name'
             ])
         metrics.append(nova_hypervisor_vcpus_used)
@@ -56,7 +54,6 @@ class NovaCollector(object):
             'Number of vms running on this hypervisor',
             labels=[
                 'nova_hypervisor_id',
-                'nova_hypervisor_up',
                 'nova_hypervisor_name'
             ])
         metrics.append(nova_hypervisor_running_vms)
@@ -65,8 +62,6 @@ class NovaCollector(object):
             'nova_hypervisor_local_disk_size',
             'Amount of local disk available on this hypervisor',
             labels=[
-                'nova_hypervisor_id',
-                'nova_hypervisor_up',
                 'nova_hypervisor_name'
             ])
         metrics.append(nova_hypervisor_local_disk_size)
@@ -76,7 +71,6 @@ class NovaCollector(object):
             'Amount of local disk used on this hypervisor',
             labels=[
                 'nova_hypervisor_id',
-                'nova_hypervisor_up',
                 'nova_hypervisor_name'
             ])
         metrics.append(nova_hypervisor_local_disk_used)
@@ -86,7 +80,6 @@ class NovaCollector(object):
             'Amount of local disk free on this hypervisor',
             labels=[
                 'nova_hypervisor_id',
-                'nova_hypervisor_up',
                 'nova_hypervisor_name'
             ])
         metrics.append(nova_hypervisor_local_disk_free)
@@ -96,7 +89,6 @@ class NovaCollector(object):
             'Amount of memory available on this hypervisor',
             labels=[
                 'nova_hypervisor_id',
-                'nova_hypervisor_up',
                 'nova_hypervisor_name'
             ])
         metrics.append(nova_hypervisor_memory_size)
@@ -106,7 +98,6 @@ class NovaCollector(object):
             'Amount of memory used on this hypervisor',
             labels=[
                 'nova_hypervisor_id',
-                'nova_hypervisor_up',
                 'nova_hypervisor_name'
             ])
         metrics.append(nova_hypervisor_memory_used)
@@ -116,7 +107,6 @@ class NovaCollector(object):
             'Amount of memory free on this hypervisor',
             labels=[
                 'nova_hypervisor_up',
-                'nova_hypervisor_id',
                 'nova_hypervisor_name'
             ])
         metrics.append(nova_hypervisor_memory_free)
@@ -126,7 +116,6 @@ class NovaCollector(object):
             'Number of hypervisor tasks',
             labels=[
                 'nova_hypervisor_id',
-                'nova_hypervisor_up',
                 'nova_hypervisor_name'
             ])
         metrics.append(nova_hypervisor_current_workload)
@@ -140,6 +129,7 @@ class NovaCollector(object):
                 cpu = hv.cpu_info
 
             hvid = str(hv.id)
+            hvname = str(hv.name)
             nova_hypervisor_up.add_metric([
                 hvid,
                 hv.name,
@@ -152,16 +142,16 @@ class NovaCollector(object):
                 cpu['arch'],
             ], 1.0)
 
-            nova_hypervisor_vcpus.add_metric([hvid], hv.vcpus)
-            nova_hypervisor_vcpus_used.add_metric([hvid], hv.vcpus_used)
-            nova_hypervisor_running_vms.add_metric([hvid], hv.running_vms)
-            nova_hypervisor_local_disk_size.add_metric([hvid], hv.local_disk_size)
-            nova_hypervisor_local_disk_used.add_metric([hvid], hv.local_disk_used)
-            nova_hypervisor_local_disk_free.add_metric([hvid], hv.local_disk_free)
-            nova_hypervisor_memory_size.add_metric([hvid], hv.memory_size)
-            nova_hypervisor_memory_used.add_metric([hvid], hv.memory_used)
-            nova_hypervisor_memory_free.add_metric([hvid], hv.memory_free)
-            nova_hypervisor_current_workload.add_metric([hvid], hv.current_workload)
+            nova_hypervisor_vcpus.add_metric([hvid, hvname], hv.vcpus)
+            nova_hypervisor_vcpus_used.add_metric([hvid, hvname], hv.vcpus_used)
+            nova_hypervisor_running_vms.add_metric([hvid, hvname], hv.running_vms)
+            nova_hypervisor_local_disk_size.add_metric([hvid, hvname], hv.local_disk_size)
+            nova_hypervisor_local_disk_used.add_metric([hvid, hvname], hv.local_disk_used)
+            nova_hypervisor_local_disk_free.add_metric([hvid, hvname], hv.local_disk_free)
+            nova_hypervisor_memory_size.add_metric([hvid, hvname], hv.memory_size)
+            nova_hypervisor_memory_used.add_metric([hvid, hvname], hv.memory_used)
+            nova_hypervisor_memory_free.add_metric([hvid, hvname], hv.memory_free)
+            nova_hypervisor_current_workload.add_metric([hvid, hvname], hv.current_workload)
 
         yield from iter(metrics)
 
